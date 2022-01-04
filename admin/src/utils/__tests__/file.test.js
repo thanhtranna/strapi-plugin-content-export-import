@@ -1,10 +1,10 @@
-import {readLocalFile} from "../file";
+import { readLocalFile } from '../file';
 
 describe('# Filer reader', () => {
   it('should read local file and parse it', async () => {
     const file = new Blob();
     const parser = jest.fn();
-    await readLocalFile(file, parser);
+    await readLocalFile(file);
     expect(parser).toHaveBeenCalledTimes(1);
   });
   it('should read local file and return if no parser', async () => {

@@ -7,7 +7,7 @@ const importSingleType = async (uid, item) => {
   if (existing.length > 0) {
     return strapi.query(uid).update({
       id: existing[0].id,
-    }, item)
+    }, item);
   } else {
     return strapi.query(uid).create(item);
   }

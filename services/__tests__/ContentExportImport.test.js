@@ -38,7 +38,7 @@ describe('# Service', () => {
   it('should delete content by ids and return deleted count', async () => {
     const deleteAll = jest.fn();
     const deleteCtx = mockCxt({});
-    utils.findAll.mockImplementation(() => [{ id: 1 }, {id: 13 }]);
+    utils.findAll.mockImplementation(() => [{ id: 1 }, { id: 13 }]);
     utils.deleteByIds.mockImplementation(deleteAll);
     await service.deleteAllData('uid', deleteCtx);
     expect(deleteAll).toBeCalledTimes(1);

@@ -1,16 +1,16 @@
-import {deleteAllContent, importContent} from "../ContentExportImport";
+import { deleteAllContent, importContent } from '../ContentExportImport';
 
 describe('# Controller', () => {
   const setUpStrapi = (serviceMock) => {
     global.strapi = {
       plugins: {
-        ['content-export-import']: {
+        'content-export-import': {
           services: {
             contentexportimport: serviceMock
           }
         }
       }
-    }
+    };
   };
 
   it('should throw 400 if required parameters not exist', async () => {

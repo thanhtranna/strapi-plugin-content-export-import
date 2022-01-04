@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {Button, InputSelect} from "strapi-helper-plugin";
-import {convertModelToOption} from "../../utils/convertOptions";
-import {find, get, map} from 'lodash';
-import {FieldRow, FileField, FormAction} from "./ui-components";
-import {readLocalFile} from "../../utils/file";
-import JsonDataDisplay from "../../components/JsonDataDisplay";
-import {importData} from "../../utils/api";
+import React, { useState, useEffect } from 'react';
+import { Button, InputSelect } from 'strapi-helper-plugin';
+import { convertModelToOption } from '../../utils/convertOptions';
+import { find, get, map } from 'lodash';
+import { FieldRow, FileField, FormAction } from './ui-components';
+import { readLocalFile } from '../../utils/file';
+import JsonDataDisplay from '../../components/JsonDataDisplay';
+import { importData } from '../../utils/api';
 
-const ImportForm = ({models}) => {
+const ImportForm = ({ models }) => {
   const options = map(models, convertModelToOption);
   const [loading, setLoading] = useState(false);
   const [targetModelUid, setTargetModel] = useState(undefined);
@@ -27,33 +27,35 @@ const ImportForm = ({models}) => {
   const onSourceFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
       setSource(null);
-      setSourceFile(event.target.files[0])
+      setSourceFile(event.target.files[0]);
     }
   };
 
   const upload = () => {
     if (!sourceFile) {
-      strapi.notification.error("Please choose a source file first.");
+      strapi.notification.error('Please choose a source file first.');
       return;
     }
+    console.log('asasass', sourceFile);
     setLoading(true);
-    readLocalFile(sourceFile, JSON.parse).then(setSource)
-    .catch((error) => {
-      strapi.notification.error(
-        "Something wrong when uploading the file, please check the file and try again.");
-      console.error(error)
-    }).finally(() => {
-      setLoading(false);
-    })
+
+    readLocalFile(sourceFile).then(setSource)
+      .catch((error) => {
+        strapi.notification.error(
+          'Something wrong when uploading the file, please check the file and try again.');
+        console.error(error);
+      }).finally(() => {
+        setLoading(false);
+      });
   };
 
   const submit = () => {
     if (!targetModelUid) {
-      strapi.notification.error("Please select a target content type!");
+      strapi.notification.error('Please select a target content type!');
       return;
     }
     if (!source) {
-      strapi.notification.error("Please choose a source file first.");
+      strapi.notification.error('Please choose a source file first.');
       return;
     }
     const model = find(models, (model) => model.uid === targetModelUid);
@@ -63,10 +65,10 @@ const ImportForm = ({models}) => {
       source,
       kind: get(model, 'schema.kind'),
     }).then(() => {
-      strapi.notification.success("Import succeeded!");
+      strapi.notification.success('Import succeeded!');
     }).catch((error) => {
       console.log(error);
-      strapi.notification.error("Failed: " + error.message);
+      strapi.notification.error('Failed: ' + error.message);
     }).finally(() => {
       setLoading(false);
     });
@@ -76,10 +78,10 @@ const ImportForm = ({models}) => {
       <label htmlFor="source">Content Source File</label>
       <FileField>
         <input id="source"
-               name="source"
-               accept={".json"}
-               type="file"
-               onChange={onSourceFileChange}
+          name="source"
+          accept={'.json,.xlsx'}
+          type="file"
+          onChange={onSourceFileChange}
         />
       </FileField>
     </FieldRow>
@@ -87,25 +89,25 @@ const ImportForm = ({models}) => {
       ? (<JsonDataDisplay data={source}/>)
       : (<FormAction>
         <Button disabled={loading}
-                onClick={upload}
-                secondaryHotline>{loading ? "Please Wait..."
-          : "Upload"}</Button>
+          onClick={upload}
+          secondaryHotline>{loading ? 'Please Wait...'
+            : 'Upload'}</Button>
       </FormAction>)
     }
     <FieldRow>
       <label htmlFor="target-content-type">Target Content Type</label>
       <InputSelect name="targetContentType"
-                   id="target-content-type"
-                   selectOptions={options}
-                   value={targetModelUid}
-                   onChange={onTargetModelChange}/>
+        id="target-content-type"
+        selectOptions={options}
+        value={targetModelUid}
+        onChange={onTargetModelChange}/>
     </FieldRow>
     <FormAction>
       <Button disabled={loading}
-              onClick={submit}
-              primary>{loading ? "Please Wait..." : "Import"}</Button>
+        onClick={submit}
+        primary>{loading ? 'Please Wait...' : 'Import'}</Button>
     </FormAction>
-  </div>)
+  </div>);
 };
 
 export default ImportForm;

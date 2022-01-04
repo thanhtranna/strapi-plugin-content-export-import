@@ -1,4 +1,4 @@
-import {getUrl} from "../getUrl";
+import { getUrl } from '../getUrl';
 
 describe('# Get url', () => {
   it('should create url by plugin id and path', () => {

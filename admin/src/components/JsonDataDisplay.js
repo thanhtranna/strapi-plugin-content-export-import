@@ -20,7 +20,7 @@ const JsonDataDisplay = ({ data }) => {
         JSON.stringify(data, null, 4)
       }
     </CodeWrapper>
-  </div>)
+  </div>);
 };
 
 export default JsonDataDisplay;

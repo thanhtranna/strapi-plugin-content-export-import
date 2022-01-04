@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
-import {ErrorBoundary} from 'strapi-helper-plugin';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { ErrorBoundary } from 'strapi-helper-plugin';
 // Utils
 import pluginId from '../../pluginId';
 // Containers
@@ -21,11 +21,11 @@ const App = () => {
       <ErrorBoundary>
         <Switch>
           <Route path={`/plugins/${pluginId}/export`} component={ExportPage}
-                 exact/>
+            exact/>
           <Route path={`/plugins/${pluginId}/import`} component={ImportPage}
-                 exact/>
+            exact/>
           <Route path={`/plugins/${pluginId}/utilities`} component={UtilPage}
-                 exact/>
+            exact/>
           <Redirect to={`/plugins/${pluginId}/export`}/>
         </Switch>
       </ErrorBoundary>

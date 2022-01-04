@@ -1,4 +1,4 @@
-import {findAll, importSingleType} from "../content";
+import { findAll, importSingleType } from '../content';
 
 describe('# Stripi api helpers', () => {
   const setUpStrapi = (method) => {
@@ -9,7 +9,7 @@ describe('# Stripi api helpers', () => {
 
   it('should find all content by type', async () => {
     const find = jest.fn();
-    setUpStrapi({find});
+    setUpStrapi({ find });
     await findAll('uid');
     expect(find).toHaveBeenCalled();
   });

@@ -1,4 +1,4 @@
-import {convertModelToOption} from "../convertOptions";
+import { convertModelToOption } from '../convertOptions';
 
 describe('# Select option helpers', () => {
   it('should convert model to select options', () => {

@@ -1,7 +1,7 @@
 import {
   validateDeleteRequest,
   validateImportContentRequest
-} from "../validations";
+} from '../validations';
 
 describe('# Request body validation', () => {
   it('should validate all required parameters appear', () => {
@@ -17,5 +17,5 @@ describe('# Request body validation', () => {
     expect(validateDeleteRequest({
       targetModelUid: 'test-id'
     })).toBeUndefined();
-  })
+  });
 });

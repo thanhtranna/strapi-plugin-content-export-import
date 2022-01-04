@@ -1,7 +1,7 @@
-import {fetchEntries, getModels} from "../contentApis";
-import * as strapiHelper from "strapi-helper-plugin";
+import { fetchEntries, getModels } from '../contentApis';
+import * as strapiHelper from 'strapi-helper-plugin';
 
-jest.mock("strapi-helper-plugin");
+jest.mock('strapi-helper-plugin');
 
 describe('# Strapi content api helpers', () => {
   it('should get all customised content types', async () => {
@@ -39,7 +39,7 @@ describe('# Strapi content api helpers', () => {
     strapiHelper.request.mockImplementation(request);
     await fetchEntries('content-type', 'collectionType');
     expect(request).toBeCalledTimes(1);
-    expect(request).toHaveBeenCalledWith('/content-types', { method: 'GET'});
+    expect(request).toHaveBeenCalledWith('/content-types', { method: 'GET' });
   });
 
   it('should handle irregular plural collection name', async () => {
@@ -47,7 +47,7 @@ describe('# Strapi content api helpers', () => {
     strapiHelper.request.mockImplementation(request);
     await fetchEntries('company', 'collectionType');
     expect(request).toBeCalledTimes(1);
-    expect(request).toHaveBeenCalledWith('/companies', { method: 'GET'});
+    expect(request).toHaveBeenCalledWith('/companies', { method: 'GET' });
   });
 
   it('should call single api if content type is a single', async () => {
@@ -55,6 +55,6 @@ describe('# Strapi content api helpers', () => {
     strapiHelper.request.mockImplementation(request);
     await fetchEntries('content-type', 'singleType');
     expect(request).toBeCalledTimes(1);
-    expect(request).toHaveBeenCalledWith('/content-type', { method: 'GET'});
+    expect(request).toHaveBeenCalledWith('/content-type', { method: 'GET' });
   });
 });

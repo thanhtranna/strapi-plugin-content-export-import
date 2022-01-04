@@ -1,5 +1,5 @@
 {
-  "name": "strapi-plugin-excel-export",
+  "name": "strapi-plugin-content-export-import",
   "version": "2.0.0",
   "description": "Strapi plugin to export collection types into excel format.",
   "strapi": {

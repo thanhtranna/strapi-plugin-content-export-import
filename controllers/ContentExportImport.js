@@ -6,7 +6,7 @@ const validator = require('./validations');
 
 module.exports = {
   importContent: async (ctx) => {
-    const importService = strapi.plugins[PLUGIN_ID].services['contentexportimport'];
+    const importService = strapi.plugins[PLUGIN_ID].services.contentexportimport;
     const validationResult = validator.validateImportContentRequest(
       ctx.request.body);
     if (validationResult) {
@@ -19,7 +19,7 @@ module.exports = {
     });
   },
   deleteAllContent: async (ctx) => {
-    const importService = strapi.plugins[PLUGIN_ID].services['contentexportimport'];
+    const importService = strapi.plugins[PLUGIN_ID].services.contentexportimport;
     const validationResult = validator.validateDeleteRequest(ctx.request.body);
     if (validationResult) {
       ctx.throw(400, validationResult);

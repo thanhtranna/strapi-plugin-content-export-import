@@ -1,6 +1,6 @@
 'use strict';
 
-const utils  = require('./utils/content');
+const utils = require('./utils/content');
 const _ = require('lodash');
 
 /**
@@ -15,7 +15,7 @@ module.exports = {
     try {
       if (kind === 'collectionType' && Array.isArray(source)) {
         for (let i = 0; i < source.length; i++) {
-          await utils.importItemByContentType(targetModel, source[i])
+          await utils.importItemByContentType(targetModel, source[i]);
         }
       } else {
         await utils.importSingleType(targetModel, source);
