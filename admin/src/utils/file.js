@@ -13,19 +13,39 @@ export const readLocalFile = file => {
         const rowObject = xlsx.utils.sheet_to_row_object_array(
           workbook.Sheets[sheet]
         );
+
+        const mapTourId = new Map();
+
         rowObject.map(item => {
-          result.push({
-            title: item.TEN_TOUR || '',
-            tour_id: parseInt(item.TOUR_ID) || 0,
-            thumbnail_url: item.ANH_THUMB || '',
-            price: parseInt(item.GIA_TOUR) || 0,
-            time_travel: item.THOI_GIAN_DI || '',
-            tour_code: '',
-            number_of_seats: 0,
-            vehicle: item.PHUONG_TIEN || '',
-            overview_text: '',
-            list_image_url: item.ANH_THUMB || '',
-          });
+          console.log('item', item)
+          let images = [];
+          if (item.ANH_GALLERY.length > 0) {
+            const imagesGallery = item.ANH_GALLERY.split(',');
+            for (let index = 0; index < imagesGallery.length; index++) {
+              const element = imagesGallery[index];
+              images.push(`https://fiditour.com${element}`)
+            }
+          }
+          const tourId = parseInt(item.TOUR_ID);
+          if (tourId > 0 && !mapTourId.has(tourId)) {
+            result.push({
+              title: item.TEN_TOUR || '',
+              tour_id: tourId || 0,
+              thumbnail_url: item.ANH_THUMB || '',
+              price: parseInt(item.GIA_TOUR.replace(',', '')) || 0,
+              time_travel: item.THOI_GIAN_DI || '',
+              tour_code: '',
+              number_of_seats: 0,
+              vehicle: item.PHUONG_TIEN || '',
+              overview_text: item.NOIDUNG || '',
+              list_image_url: JSON.parse(JSON.stringify(Object.assign({}, images))),
+              rules_file: item.DIEU_KHOAN || '',
+              schedule_file: item.CHUONG_TRINH_TOUR || '',
+              price_and_include_file: item.GIA_VA_BAO_GOM || '',
+            });
+          } else {
+            console.log(`tour_id ${tourId} has exist`);
+          }
         });
       });
       resolve(result);

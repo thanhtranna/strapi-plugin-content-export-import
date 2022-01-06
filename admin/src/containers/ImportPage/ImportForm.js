@@ -36,7 +36,6 @@ const ImportForm = ({ models }) => {
       strapi.notification.error('Please choose a source file first.');
       return;
     }
-    console.log('asasass', sourceFile);
     setLoading(true);
 
     readLocalFile(sourceFile).then(setSource)
