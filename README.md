@@ -13,9 +13,9 @@ cd /<path-to-your-strapi-project
 cd plugins
 
 # clone the plugin code into a folder and skip the prefix
-git clone https://github.com/iamplsh/strapi-plugin-excel-export.git excel-export
+git clone https://github.com/thanhtranna/strapi-plugin-content-export-import.git content-export-import
 # install dependencies
-cd excel-export && yarn install
+cd content-export-import && yarn install
 # build the plugin
 cd ../..
 yarn build
