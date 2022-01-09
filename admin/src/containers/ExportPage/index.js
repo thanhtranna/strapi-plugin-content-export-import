@@ -16,7 +16,7 @@ import ExportModel from './ExportModel';
 import { MainDiv } from './ui-components';
 
 // Content types to be included in the export panel
-const required_models = ['tours', 'booking-informations'];
+const required_models = ['tours', 'booking_informations'];
 const ExportPage = () => {
   const [models, setModels] = useState([]);
   useEffect(() => {
