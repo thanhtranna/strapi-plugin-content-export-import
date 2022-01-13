@@ -9,15 +9,18 @@ export const readLocalFile = file => {
     fileReader.onload = event => {
       const data = event.target.result;
       const workbook = xlsx.read(data, { type: 'binary' });
+      console.log('debug 01');
       workbook.SheetNames.forEach(sheet => {
+        console.log('inside foreach');
         const rowObject = xlsx.utils.sheet_to_row_object_array(
           workbook.Sheets[sheet]
         );
+        console.log('inside foreach');
 
         const mapTourId = new Map();
 
         rowObject.map(item => {
-          console.log('item', item)
+          console.log('item', item);
           let images = [];
           if (item.ANH_GALLERY.length > 0) {
             const imagesGallery = item.ANH_GALLERY.split(',');
@@ -34,7 +37,7 @@ export const readLocalFile = file => {
               thumbnail_url: item.ANH_THUMB || '',
               price: parseInt(item.GIA_TOUR.replace(',', '')) || 0,
               time_travel: item.THOI_GIAN_DI || '',
-              tour_code: '',
+              tour_code: tourId,
               number_of_seats: 0,
               vehicle: item.PHUONG_TIEN || '',
               overview_text: item.NOIDUNG || '',
@@ -42,6 +45,7 @@ export const readLocalFile = file => {
               rules_file: item.DIEU_KHOAN || '',
               schedule_file: item.CHUONG_TRINH_TOUR || '',
               price_and_include_file: item.GIA_VA_BAO_GOM || '',
+              to_destination: item.DIEM_DEN || '',
             });
           } else {
             console.log(`tour_id ${tourId} has exist`);
