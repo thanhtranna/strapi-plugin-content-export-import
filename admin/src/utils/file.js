@@ -12,8 +12,8 @@ export const readLocalFile = file => {
       console.log('debug 01');
       workbook.SheetNames.forEach(sheet => {
         console.log('inside foreach');
-        const result = xlsx.utils.sheet_to_json(sheet, { header: 1 });
-        console.log("result", result);
+        const dataTest = xlsx.utils.sheet_to_json(sheet, { header: 1 });
+        console.log("dataTest", dataTest);
 
         const rowObject = xlsx.utils.sheet_to_row_object_array(
           workbook.Sheets[sheet]
