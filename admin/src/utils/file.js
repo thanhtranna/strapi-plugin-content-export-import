@@ -12,8 +12,8 @@ export const readLocalFile = file => {
       console.log('debug 01');
       workbook.SheetNames.forEach(sheet => {
         console.log('inside foreach');
-        const dataTest = xlsx.utils.sheet_to_json(sheet, { header: 1 });
-        console.log("dataTest", dataTest);
+        const dataTest = xlsx.utils.sheet_to_json(workbook.Sheets[sheet]);
+        console.log("dataTest", JSON.stringify(dataTest))
 
         const rowObject = xlsx.utils.sheet_to_row_object_array(
           workbook.Sheets[sheet]
@@ -43,7 +43,7 @@ export const readLocalFile = file => {
               tour_code: tourId,
               number_of_seats: 0,
               vehicle: item.PHUONG_TIEN || '',
-              overview_text: item.NOIDUNG || '',
+              overview_text: item.NOIDUNG_NGAN || '',
               list_image_url: JSON.parse(JSON.stringify(Object.assign({}, images))),
               rules_file: item.DIEU_KHOAN || '',
               schedule_file: item.CHUONG_TRINH_TOUR || '',
