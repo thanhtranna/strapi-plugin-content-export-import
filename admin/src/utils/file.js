@@ -49,7 +49,7 @@ export const readLocalFile = (file) => {
               rules_file: element.DIEU_KHOAN || "",
               schedule_file: element.CHUONG_TRINH_TOUR || "",
               price_and_include_file: element.GIA_VA_BAO_GOM || "",
-              to_destination: element.DIEM_DEN || "",
+              from_destination: element.DIEM_KHOI_HANH || "",
               departure_date: element.NGAY_KHOI_HANH || "",
             });
           } else {
