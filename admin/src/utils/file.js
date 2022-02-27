@@ -50,6 +50,7 @@ export const readLocalFile = (file) => {
               schedule_file: element.CHUONG_TRINH_TOUR || "",
               price_and_include_file: element.GIA_VA_BAO_GOM || "",
               from_destination: element.DIEM_KHOI_HANH || "",
+              to_destination_name: element.DIEM_DEN || "",
               departure_date: element.NGAY_KHOI_HANH || "",
             });
           } else {
