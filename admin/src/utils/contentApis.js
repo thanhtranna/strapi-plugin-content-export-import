@@ -23,7 +23,8 @@ export const getNationalDestinations = () => {
     }
   )
     .then((response) => {
-      return filter(response.data.results, true).map((obj) => ({
+      console.log("response", JSON.stringify(response));
+      return response.data.results.map((obj) => ({
         id: obj.id,
         name: obj.name,
       }));
