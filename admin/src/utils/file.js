@@ -67,10 +67,11 @@ export const readLocalFile = (file) => {
               }
             }
           });
+          resolve(result);
         })
-        .finally(() => {});
-
-      resolve(result);
+        .finally(() => {
+          resolve(result);
+        });
     };
     fileReader.onerror = reject;
   });
