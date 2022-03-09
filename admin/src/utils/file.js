@@ -67,6 +67,8 @@ export const readLocalFile = (file) => {
                 } else {
                   console.log(`tour_id ${tourId} has exist`);
                 }
+              } else {
+                console.log(`DIEM_KHOI_HANH ${element.DIEM_KHOI_HANH} has exist`)
               }
             }
           });
