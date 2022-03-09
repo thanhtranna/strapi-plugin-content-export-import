@@ -23,7 +23,7 @@ export const getNationalDestinations = () => {
     }
   )
     .then((response) => {
-      return JSON.parse(response).results.map((obj) => ({
+      return response.results.map((obj) => ({
         id: obj.id,
         name: obj.name,
       }));
