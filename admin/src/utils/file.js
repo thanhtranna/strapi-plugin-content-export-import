@@ -15,7 +15,7 @@ export const readLocalFile = (file) => {
       getNationalDestinations()
         .then((nationalDestinations) => {
           workbook.SheetNames.forEach((sheet) => {
-            console.log("inside foreach");
+            console.log("inside foreach", JSON.stringify(nationalDestinations));
             const rowObject = xlsx.utils.sheet_to_json(workbook.Sheets[sheet]);
             if (rowObject && !rowObject.length) {
               console.log("rowObject length = 0");
