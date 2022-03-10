@@ -37,7 +37,7 @@ export const readLocalFile = (file) => {
               }
               const tourId = parseInt(element.TOUR_ID);
               const nationalDestination = findNameInArray(
-                element.DIEM_KHOI_HANH,
+                element.DIEM_DEN,
                 nationalDestinations
               );
               console.log("nationalDestination", nationalDestination);
